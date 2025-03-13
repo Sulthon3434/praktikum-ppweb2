@@ -17,17 +17,17 @@
             margin-top: 50px;
         }
         .card {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(142, 255, 3, 0.58);
             border: none;
             border-radius: 15px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
         }
         .card-header {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(196, 249, 5, 0.65);
             border-radius: 15px 15px 0 0;
         }
         .form-control {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.55);
             color: #fff;
             border: none;
         }
@@ -39,7 +39,7 @@
             border: none;
         }
         .hasil-nilai {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(9, 140, 221, 0.2);
             padding: 15px;
             border-radius: 10px;
             margin-top: 20px;
@@ -74,10 +74,6 @@
                     <label class="form-label">Nilai UAS</label>
                     <input type="number" name="nilai_uas" class="form-control" min="0" max="100" required>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Nilai Tugas</label>
-                    <input type="number" name="nilai_tugas" class="form-control" min="0" max="100" required>
-                </div>
                 <button type="submit" name="proses" class="btn btn-primary w-100">Hitung</button>
             </form>
             
@@ -87,9 +83,8 @@
                 $mata_kuliah = $_POST['matkul'];
                 $nilai_uts = $_POST['nilai_uts'];
                 $nilai_uas = $_POST['nilai_uas'];
-                $nilai_tugas = $_POST['nilai_tugas'];
 
-                $nilai_akhir = ($nilai_uts * 0.3) + ($nilai_uas * 0.35) + ($nilai_tugas * 0.35);
+                $nilai_akhir = ($nilai_uts * 0.3) + ($nilai_uas * 0.35);
                 $status = ($nilai_akhir > 55) ? "Lulus" : "Tidak Lulus";
                 $grade = ($nilai_akhir >= 85) ? 'A' : (($nilai_akhir >= 70) ? 'B' : (($nilai_akhir >= 56) ? 'C' : (($nilai_akhir >= 36) ? 'D' : 'E')));
                 $predikat_list = ['A' => 'Sangat Memuaskan', 'B' => 'Memuaskan', 'C' => 'Cukup', 'D' => 'Kurang', 'E' => 'Sangat Kurang'];
@@ -101,7 +96,6 @@
                     <p><strong>Mata Kuliah:</strong> <?= $mata_kuliah; ?></p>
                     <p><strong>Nilai UTS:</strong> <?= $nilai_uts; ?></p>
                     <p><strong>Nilai UAS:</strong> <?= $nilai_uas; ?></p>
-                    <p><strong>Nilai Tugas:</strong> <?= $nilai_tugas; ?></p>
                     <p><strong>Nilai Akhir:</strong> <?= number_format($nilai_akhir, 2); ?></p>
                     <p><strong>Status:</strong> <span class="badge bg-<?= ($status == "Lulus") ? 'success' : 'danger'; ?>"> <?= $status; ?> </span></p>
                     <p><strong>Grade:</strong> <span class="badge bg-primary"> <?= $grade; ?> </span></p>
